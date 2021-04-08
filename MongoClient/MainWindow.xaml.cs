@@ -1,5 +1,8 @@
-﻿using System;
+﻿using MongoClient.ViewModels;
+using Resume.Mongo.Data.Services;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,9 +23,45 @@ namespace MongoClient
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        private MainViewModel vm;
+
+        //public MainWindow()
+        //{
+
+        //}
+        public MainWindow(MainViewModel vm)
         {
             InitializeComponent();
+            this.vm = vm;
+            this.getData_Btn.Click += this.GetData;
+            this.db_Cbx.ItemsSource = this.vm.dbNames;
+            this.connectionString_Tb.TextChanged += this.TextChange;
+            this.AddDb_Btn.Click += this.Add_DB;
         }
+
+        public void GetData(object sender, RoutedEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(this.vm.ConnectionString))
+            {
+                foreach (var item in this.vm.Service.GetDatabaseNames().Result)
+                {
+                    this.vm.dbNames.Add(item);
+                }
+            }
+        }
+
+        public void Add_DB(object sender, EventArgs e)
+        {
+            this.vm.dbNames.Add(this.newDbName_Tbx.Text.Trim());
+        }
+
+        public void TextChange(object sender, TextChangedEventArgs e)
+        {
+            var textBx = sender as TextBox;
+
+            this.vm.ConnectionString = textBx.Text.Trim();
+        }
+
+
     }
 }

@@ -6,7 +6,21 @@
         xmlns:local="clr-namespace:MongoClient"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <Grid x:Name="grid">
+        <TextBox x:Name="connectionString_Tb" HorizontalAlignment="Left" Margin="25,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="521" Height="24" RenderTransformOrigin="0.5,0.5">
+            <TextBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-0.024"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </TextBox.RenderTransform>
+        </TextBox>
+        <ComboBox x:Name="db_Cbx" HorizontalAlignment="Left" Margin="30,98,0,0" VerticalAlignment="Top" Width="120" IsReadOnly="True"/>
+        <Button x:Name="getData_Btn" Content="Get data" HorizontalAlignment="Left" Margin="560,27,0,0" VerticalAlignment="Top" Height="29" Width="65"/>
+        <TextBox x:Name="newDbName_Tbx" HorizontalAlignment="Left" Margin="30,65,0,0" Text="New DB Name" TextWrapping="Wrap" VerticalAlignment="Top" Width="165"/>
+        <Button x:Name="AddDb_Btn" Content="Add DB" HorizontalAlignment="Left" Margin="650,27,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.087,-0.713" Height="29" Width="79"/>
 
     </Grid>
 </Window>
